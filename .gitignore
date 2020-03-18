@@ -1,7 +1,7 @@
 venv
-__psychache__
-__pychache__
+__pycache__
 
 [core]
 excludefile = ~/.gitignore
 
+recipes.db

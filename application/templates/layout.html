@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>TodoApp</title>
-  </head>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Recipe database</title>
+    </head>
 
-  <body>
-    {% block body %}
+    <body>
+      <ul>
+	<li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
+	<li><a href="{{ url_for('recipes_form') }}">Add a recipe</a></li>
+      </ul>
+
+      {% block body %}
       <p>
-        Content.
+	Content.
       </p>
-    {% endblock %}
-  </body>
-</html>
+      {% endblock %}
+    </body>
+  </html>

@@ -5,3 +5,5 @@ __pycache__
 excludefile = ~/.gitignore
 
 recipes.db
+
+.idea

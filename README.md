@@ -6,7 +6,8 @@
 
 ## Dokumentaatio
 
-[Tietokantakaavio]()
-[Käyttötapaukset]()
+[Tietokantakaavio](https://github.com/silmish/Project-recipe/blob/master/documentation/Database%20scheme.jpg)
+
+[Käyttötapaukset](https://github.com/silmish/Project-recipe/blob/master/documentation/kayttotapaukset.md)
 
 

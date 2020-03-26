@@ -4,7 +4,10 @@ from wtforms import StringField, validators
 
 class RecipeForm(FlaskForm):
     name = StringField("Recipe name", [validators.Length(min=2)])
-    newName = StringField("Recipe new name", [validators.Length(min=2)])
+    new = StringField("Recipe new name")
 
     class Meta:
         csrf = False
+
+
+        #[validators.Length(min=2)]

@@ -42,25 +42,26 @@ def recipes_update():
     if not form.validate():
         return render_template("recipes/update.html", form=form)
 
-    update = Recipe.query.filter_by(name=form.name.data).first()
+    update = Recipe.query.filter_by(name=form.name.data).first_or_404()
 
-    update.name = form.newName.data
+    update.name = form.new.data
 
-    db.session.commit()
+    db.session().commit()
 
     return redirect(url_for("recipes_index"))
 
 
 @app.route("/recipe/delete/", methods=["POST", "GET"])
+@login_required
 def recipes_delete():
     form = RecipeForm(request.form)
 
     if not form.validate():
         return render_template("recipes/delete.html", form=form)
 
-    delete = Recipe.query.filter_by(name=form.name.data).first()
+    remove = Recipe.query.filter_by(name=form.name.data).first_or_404()
 
-    db.session.delete(delete)
-    db.session.commit()
+    db.session().delete(remove)
+    db.session().commit()
 
     return redirect(url_for("recipes_index"))

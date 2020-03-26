@@ -17,23 +17,12 @@ def recipes_index():
     return render_template("recipes/list.html", recipes=Recipe.query.all())
 
 
-@app.route("/recipes/<recipe_id>/", methods=["POST"])
-@login_required
-def tasks_set_done(recipe_id):
-    t = Recipe.query.get(recipe_id)
-    t.done = True
-    db.session().commit()
-
-    return redirect(url_for("tasks_index"))
-
-
-@app.route("/recipes/", methods=["POST"])
+@app.route("/recipes/new/", methods=["POST"])
 @login_required
 def recipes_create():
     form = RecipeForm(request.form)
 
     if not form.validate():
-
         return render_template("recipes/new.html", form=form)
 
     t = Recipe(form.name.data)
@@ -41,5 +30,37 @@ def recipes_create():
 
     db.session().add(t)
     db.session().commit()
+
+    return redirect(url_for("recipes_index"))
+
+
+@app.route("/recipes/update/", methods=["POST", "GET"])
+@login_required
+def recipes_update():
+    form = RecipeForm(request.form)
+
+    if not form.validate():
+        return render_template("recipes/update.html", form=form)
+
+    update = Recipe.query.filter_by(name=form.name.data).first()
+
+    update.name = form.newName.data
+
+    db.session.commit()
+
+    return redirect(url_for("recipes_index"))
+
+
+@app.route("/recipe/delete/", methods=["POST", "GET"])
+def recipes_delete():
+    form = RecipeForm(request.form)
+
+    if not form.validate():
+        return render_template("recipes/delete.html", form=form)
+
+    delete = Recipe.query.filter_by(name=form.name.data).first()
+
+    db.session.delete(delete)
+    db.session.commit()
 
     return redirect(url_for("recipes_index"))

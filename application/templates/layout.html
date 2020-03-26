@@ -14,8 +14,11 @@
       <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
       {% endif %}
       <ul>
+    <li><a href="{{ url_for('auth_create') }}">Create user</a></li>
 	<li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
 	<li><a href="{{ url_for('recipes_form') }}">Add a recipe</a></li>
+    <li><a href="{{ url_for('recipes_update') }}">Update recipe name</a></li>
+    <li><a href="{{ url_for('recipes_delete') }}">Delete recipe</a></li>
       </ul>
 
       {% block body %}

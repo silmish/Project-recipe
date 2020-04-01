@@ -3,29 +3,59 @@
     <head>
       <meta charset="utf-8">
       <title>Recipe database</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <style>body {   padding-top: 2rem; }</style>
     </head>
 
     <body>
-    {% if current_user.is_authenticated %}
-      <p>
-	Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-      </p>
-      {% else %}
-      <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Recipe database</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('auth_create') }}">Create user <span class="sr-only">(current)</span></a>
+      </li>
+      {% if current_user.is_authenticated %}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+	        <a class="dropdown-item" href="{{ url_for('recipes_index') }}">List recipes</a>
+	        <a class="dropdown-item" href="{{ url_for('recipes_create') }}">Add a recipe</a>
+            <a class="dropdown-item" href="{{ url_for('recipes_update') }}">Update recipe name</a>
+            <a class="dropdown-item" href="{{ url_for('recipes_delete') }}">Delete recipe</a>
+            <a class="dropdown-item" href="{{ url_for('ingredients_index') }}">List ingredients</a>
+            <a class="dropdown-item" href="{{ url_for('ingredients_create') }}">Add new ingredient</a>
+        </div>
+      </li>
       {% endif %}
-      <ul>
-    <li><a href="{{ url_for('auth_create') }}">Create user</a></li>
-	<li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
-	<li><a href="{{ url_for('recipes_create') }}">Add a recipe</a></li>
-    <li><a href="{{ url_for('recipes_update') }}">Update recipe name</a></li>
-    <li><a href="{{ url_for('recipes_delete') }}">Delete recipe</a></li>
-
-      </ul>
-
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        {% if current_user.is_authenticated %}
+        <span class="navbar-text mr-3"> Kirjautunut nimellä {{ current_user.name }}.</span> <a class="btn btn-secondary my-2 my-sm-0" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+        {% else %}
+        <a class="btn btn-secondary my-2 my-sm-0" href="{{ url_for('auth_login') }}">Kirjaudu</a>
+        {% endif %}
+    </form>
+  </div>
+</nav>
+    <main role="main" class="p-5">
+    <div class="row"> <div class="col-md-12">
       {% block body %}
       <p>
 	Content.
       </p>
       {% endblock %}
+    </div>
+    </div>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
   </html>

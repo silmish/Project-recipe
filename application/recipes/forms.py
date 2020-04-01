@@ -8,6 +8,3 @@ class RecipeForm(FlaskForm):
 
     class Meta:
         csrf = False
-
-
-        #[validators.Length(min=2)]

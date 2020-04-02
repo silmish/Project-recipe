@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.recipes.models import Recipe
+from application.ingredients.models import Ingredient
+from application.recipe_ingredients.models import recipe_ingredients
 from application.recipes.forms import RecipeForm
 
 
@@ -17,7 +19,7 @@ def recipes_index():
     return render_template("recipes/list.html", recipes=Recipe.query.all())
 
 
-@app.route("/recipes/new/", methods=["POST"])
+@app.route("/recipes/new/", methods=["POST", "GET"])
 @login_required
 def recipes_create():
     form = RecipeForm(request.form)
@@ -26,6 +28,26 @@ def recipes_create():
         return render_template("recipes/new.html", form=form)
 
     t = Recipe(form.name.data)
+    ingredients_string = form.ingredientString.data
+    print(ingredients_string)
+
+    ingredients = ingredients_string.split(', ')
+
+    print(ingredients)
+
+    i = Ingredient.query.all()
+    for name in i:
+        print(name.name)
+
+    """for ingredient in ingredients:
+        x = Ingredient.query.one_or_none(name=ingredient)
+
+        if not x:
+            x = ingredient(ingredient)
+            x.add()
+
+        print(x)"""
+
     t.account_id = current_user.id
 
     db.session().add(t)

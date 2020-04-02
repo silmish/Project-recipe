@@ -17,6 +17,8 @@ db = SQLAlchemy(app)
 # Sovelluksen toiminnot
 from application import views
 
+from application.recipe_ingredients import models
+
 from application.recipes import models
 from application.recipes import views
 
@@ -49,5 +51,5 @@ def load_user(user_id):
 # Luodaan taulut
 try:
     db.create_all()
-except:
-    pass
+except Exception as e:
+    print(str(e))

@@ -2,8 +2,6 @@ from sqlalchemy import text
 
 from application import db
 
-from application.recipe_ingredients.models import RecipeIngredient
-
 
 class Recipe(db.Model):
     __tablename__ = "Recipe"
@@ -35,5 +33,7 @@ class Recipe(db.Model):
         response = []
         for row in res:
             response.append({"id": row[0], "name": row[1]})
-
-        return response
+        if response.__sizeof__() == 0:
+            response.append({"id": 0, "name": 0})
+        else:
+            return response

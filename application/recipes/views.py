@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.recipes.models import Recipe
 from application.ingredients.models import Ingredient
-from application.recipe_ingredients.models import RecipeIngredient
+from application.recipe_ingredients.models import recipe_ingredients
 from application.recipes.forms import RecipeForm
 
 
@@ -46,8 +46,7 @@ def recipes_create():
             db.session().add(x)
             db.session().flush()
         db.session().commit()
-        k = RecipeIngredient(t.id, x.id)
-        db.session().add(k)
+        k = recipe_ingredients.insert().values({"recipe_id": t.id, "ingredient_id": x.id})
         db.session.flush()
 
     db.session().commit()

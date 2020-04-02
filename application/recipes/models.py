@@ -4,7 +4,7 @@ from application import db
 
 
 class Recipe(db.Model):
-    __tablename__ = "Recipe"
+    __tablename__ = "recipe"
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -23,11 +23,11 @@ class Recipe(db.Model):
 
     @staticmethod
     def find_recipes_with_ingredients():
-        stmt = """SELECT "Recipe".id, "Recipe".name FROM "Recipe" as Recipe
-                    LEFT JOIN "recipe_ingredients" as recipe_ingredients ON "recipe_ingredients".recipe_id = "Recipe".id
+        stmt = """SELECT recipe.id, recipe.name FROM recipe
+                    LEFT JOIN recipe_ingredients ON recipe_ingredients.recipe_id = recipe.id
                     WHERE (ingredients_id IS NOT null)
-                    GROUP BY "Recipe".id
-                    HAVING COUNT("recipe_ingredients".ingredients_id) > 0"""
+                    GROUP BY recipe.id
+                    HAVING COUNT(recipe_ingredients.ingredients_id) > 0"""
         res = db.engine.execute(stmt)
 
         response = []

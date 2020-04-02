@@ -2,4 +2,19 @@
 
 {% block body %}
 
+{% if has_ingredients is defined %}
+<p>
+  The following recipes has ingredients:
+</p>
+
+<ul>
+  {% for recipes in has_ingredients %}
+  <li>
+    {{recipes.id}} {{recipes.name}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
 {% endblock %}

@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.recipes.models import Recipe
 from application.ingredients.models import Ingredient
-from application.recipe_ingredients.models import recipe_ingredients
+from application.recipe_ingredients.models import RecipeIngredient
 from application.recipes.forms import RecipeForm
 
 
@@ -28,29 +28,23 @@ def recipes_create():
         return render_template("recipes/new.html", form=form)
 
     t = Recipe(form.name.data)
+    t.account_id = current_user.id
+    db.session().add(t)
     ingredients_string = form.ingredientString.data
-    print(ingredients_string)
 
-    ingredients = ingredients_string.split(', ')
+    ingredients = [x.strip() for x in ingredients_string.split(',')]
 
-    print(ingredients)
-
-    i = Ingredient.query.all()
-    for name in i:
-        print(name.name)
-
-    """for ingredient in ingredients:
-        x = Ingredient.query.one_or_none(name=ingredient)
+    for ingredient in ingredients:
+        x = db.session.query(Ingredient).filter(Ingredient.name == ingredient).one_or_none()
 
         if not x:
-            x = ingredient(ingredient)
-            x.add()
+            x = Ingredient(ingredient)
+            db.session().add(x)
+            db.session().flush()
 
-        print(x)"""
+        k = RecipeIngredient(t.id, x.id)
+        db.session().add(k)
 
-    t.account_id = current_user.id
-
-    db.session().add(t)
     db.session().commit()
 
     return redirect(url_for("recipes_index"))

@@ -16,7 +16,8 @@ def recipes_form():
 
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
-    return render_template("recipes/list.html", recipes=Recipe.query.all())
+    return render_template("recipes/list.html", recipes=Recipe.query.all(),
+                           has_ingredients=Recipe.find_recipes_with_ingredients())
 
 
 @app.route("/recipes/new/", methods=["POST", "GET"])

@@ -21,20 +21,22 @@ class Recipe(db.Model):
     def __init__(self, name):
         self.name = name
 
-
-""" @staticmethod
-    def find_recipes_w"ith_ingredients():
-        stmt = text("SELECT Recipe.id, Recipe.name FROM Recipe"
-                    " LEFT JOIN recipe_ingredients ON recipe_ingredients.recipe_id = Recipe.id"
-                    " WHERE (ingredients_id IS NOT null)"
-                    " GROUP BY Recipe.id"
-                    " HAVING COUNT(recipe_ingredients.ingredients_id) > 0")
+    @staticmethod
+    def find_recipes_with_ingredients():
+        stmt = """SELECT Recipe.id, Recipe.name FROM public.Recipe as Recipe
+                    LEFT JOIN public.recipe_ingredients as recipe_ingredients ON recipe_ingredients.recipe_id = Recipe.id
+                    WHERE (ingredients_id IS NOT null)
+                    GROUP BY Recipe.id
+                    HAVING COUNT(recipe_ingredients.ingredients_id) > 0"""
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
             response.append({"id": row[0], "name": row[1]})
-        if response.__sizeof__() == 0:
+
+        return response
+
+
+""" if response.__sizeof__() == 0:
             response.append({"id": 0, "name": 0})
-        else:
-            return response"""
+        else:"""

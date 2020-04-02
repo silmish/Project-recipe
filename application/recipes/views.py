@@ -31,7 +31,7 @@ def recipes_create():
     t = Recipe(form.name.data)
     t.account_id = current_user.id
     db.session().add(t)
-    # db.session.flush()
+    db.session.flush()
 
     ingredients_string = form.ingredientString.data
 
@@ -44,7 +44,7 @@ def recipes_create():
             x = Ingredient(ingredient)
             db.session().add(x)
             db.session().flush()
-
+        db.session().commit()
         k = RecipeIngredient(t.id, x.id)
         db.session().add(k)
         db.session.flush()

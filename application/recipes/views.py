@@ -46,7 +46,8 @@ def recipes_create():
             db.session().add(x)
             db.session().flush()
         db.session().commit()
-        k = recipe_ingredients.insert().values({"recipe_id": t.id, "ingredient_id": x.id})
+        t.recipeIngredients.append(x)
+        # recipe_ingredients.insert().values({"recipe_id": t.id, "ingredient_id": x.id})
         db.session.flush()
 
     db.session().commit()

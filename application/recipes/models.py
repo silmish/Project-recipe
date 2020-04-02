@@ -2,6 +2,8 @@
 
 from application import db
 
+from application.recipe_ingredients.models import recipe_ingredients
+
 
 class Recipe(db.Model):
     __tablename__ = "recipe"
@@ -15,8 +17,8 @@ class Recipe(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    # recipeIngredients = db.relationship('Ingredient', secondary=recipe_ingredients,
-    #                                     backref=db.backref('recipe_ingredient', lazy='dynamic'))
+    recipeIngredients = db.relationship('Ingredient', secondary=recipe_ingredients,
+                                        backref=db.backref('recipe_ingredient', lazy='dynamic'))
 
     def __init__(self, name):
         self.name = name

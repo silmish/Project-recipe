@@ -1,4 +1,4 @@
-from sqlalchemy import text
+# from sqlalchemy import text
 
 from application import db
 
@@ -21,8 +21,9 @@ class Recipe(db.Model):
     def __init__(self, name):
         self.name = name
 
-    @staticmethod
-    def find_recipes_with_ingredients():
+
+""" @staticmethod
+    def find_recipes_w"ith_ingredients():
         stmt = text("SELECT Recipe.id, Recipe.name FROM Recipe"
                     " LEFT JOIN recipe_ingredients ON recipe_ingredients.recipe_id = Recipe.id"
                     " WHERE (ingredients_id IS NOT null)"
@@ -36,4 +37,4 @@ class Recipe(db.Model):
         if response.__sizeof__() == 0:
             response.append({"id": 0, "name": 0})
         else:
-            return response
+            return response"""

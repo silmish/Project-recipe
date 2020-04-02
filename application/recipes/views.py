@@ -32,6 +32,7 @@ def recipes_create():
     t.account_id = current_user.id
     db.session().add(t)
     db.session.flush()
+    db.session().commit()
 
     ingredients_string = form.ingredientString.data
 

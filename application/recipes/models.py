@@ -23,11 +23,11 @@ class Recipe(db.Model):
 
     @staticmethod
     def find_recipes_with_ingredients():
-        stmt = """SELECT Recipe.id, Recipe.name FROM public.Recipe as Recipe
-                    LEFT JOIN public.recipe_ingredients as recipe_ingredients ON recipe_ingredients.recipe_id = Recipe.id
+        stmt = """SELECT "Recipe".id, "Recipe".name FROM "Recipe" as Recipe
+                    LEFT JOIN "recipe_ingredients" as recipe_ingredients ON "recipe_ingredients".recipe_id = "Recipe".id
                     WHERE (ingredients_id IS NOT null)
-                    GROUP BY Recipe.id
-                    HAVING COUNT(recipe_ingredients.ingredients_id) > 0"""
+                    GROUP BY "Recipe".id
+                    HAVING COUNT("recipe_ingredients".ingredients_id) > 0"""
         res = db.engine.execute(stmt)
 
         response = []

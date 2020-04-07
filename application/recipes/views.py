@@ -55,7 +55,7 @@ def recipes_create():
         t.recipeIngredients.append(x)
         # db.session.flush()
 
-    db.session.flush()
+    # db.session.flush()
     try:
         db.session().commit()
     except Exception as e:

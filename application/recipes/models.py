@@ -1,5 +1,3 @@
-# from sqlalchemy import text
-
 from application import db
 
 from application.recipe_ingredients.models import recipe_ingredients
@@ -38,7 +36,3 @@ class Recipe(db.Model):
 
         return response
 
-
-""" if response.__sizeof__() == 0:
-            response.append({"id": 0, "name": 0})
-        else:"""

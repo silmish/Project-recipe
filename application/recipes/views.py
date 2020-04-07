@@ -4,7 +4,6 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.recipes.models import Recipe
 from application.ingredients.models import Ingredient
-from application.recipe_ingredients.models import recipe_ingredients
 from application.recipes.forms import RecipeForm
 
 
@@ -31,8 +30,11 @@ def recipes_create():
     t = Recipe(form.name.data)
     t.account_id = current_user.id
     db.session().add(t)
-    db.session.flush()
-    db.session().commit()
+    # db.session.flush()
+    try:
+        db.session().commit()
+    except Exception as e:
+        print(str(e))
 
     ingredients_string = form.ingredientString.data
 
@@ -45,12 +47,19 @@ def recipes_create():
             x = Ingredient(ingredient)
             db.session().add(x)
             db.session().flush()
-        db.session().commit()
+        try:
+            db.session().commit()
+        except Exception as e:
+            print(str(e))
+
         t.recipeIngredients.append(x)
-        # recipe_ingredients.insert().values({"recipe_id": t.id, "ingredient_id": x.id})
         db.session.flush()
 
-    db.session().commit()
+    db.session.flush()
+    try:
+        db.session().commit()
+    except Exception as e:
+        print(str(e))
 
     return redirect(url_for("recipes_index"))
 

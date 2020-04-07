@@ -22,6 +22,8 @@ def recipes_index():
 @app.route("/recipes/new/", methods=["POST", "GET"])
 @login_required
 def recipes_create():
+
+    db.session().rollback()
     form = RecipeForm(request.form)
 
     if not form.validate():

@@ -31,11 +31,11 @@ def recipes_create():
     t = Recipe(form.name.data)
     t.account_id = current_user.id
     db.session().add(t)
-    db.session.flush()
-    try:
+
+    """try:
         db.session().commit()
     except Exception as e:
-        print(str(e))
+        print(str(e))"""
 
     ingredients_string = form.ingredientString.data
 
@@ -47,17 +47,14 @@ def recipes_create():
         if not x:
             x = Ingredient(ingredient)
             db.session().add(x)
-            db.session().flush()
 
-        try:
+        """try:
             db.session().commit()
         except Exception as e:
-            print(str(e))
+            print(str(e))"""
 
         t.recipeIngredients.append(x)
-        db.session.flush()
 
-    db.session.flush()
     try:
         db.session().commit()
     except Exception as e:

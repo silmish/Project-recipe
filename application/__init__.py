@@ -13,7 +13,6 @@ else:
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
-db = SQLAlchemy(session_options={"autoflush": False})
 
 # Sovelluksen toiminnot
 from application import views

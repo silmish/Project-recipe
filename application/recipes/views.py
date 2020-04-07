@@ -46,7 +46,7 @@ def recipes_create():
         if not x:
             x = Ingredient(ingredient)
             db.session().add(x)
-            db.session().flush()
+            # db.session().flush()
         try:
             db.session().commit()
         except Exception as e:

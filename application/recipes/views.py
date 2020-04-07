@@ -23,7 +23,6 @@ def recipes_index():
 @login_required
 def recipes_create():
 
-    db.session().rollback()
     form = RecipeForm(request.form)
 
     if not form.validate():
@@ -32,7 +31,7 @@ def recipes_create():
     t = Recipe(form.name.data)
     t.account_id = current_user.id
     db.session().add(t)
-    # db.session.flush()
+    db.session.flush()
     try:
         db.session().commit()
     except Exception as e:
@@ -48,16 +47,17 @@ def recipes_create():
         if not x:
             x = Ingredient(ingredient)
             db.session().add(x)
-            # db.session().flush()
+            db.session().flush()
+
         try:
             db.session().commit()
         except Exception as e:
             print(str(e))
 
         t.recipeIngredients.append(x)
-        # db.session.flush()
+        db.session.flush()
 
-    # db.session.flush()
+    db.session.flush()
     try:
         db.session().commit()
     except Exception as e:

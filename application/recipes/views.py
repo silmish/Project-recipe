@@ -53,7 +53,7 @@ def recipes_create():
             print(str(e))
 
         t.recipeIngredients.append(x)
-        db.session.flush()
+        # db.session.flush()
 
     db.session.flush()
     try:

@@ -4,7 +4,9 @@
       <meta charset="utf-8">
       <title>Recipe database</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <style>body {   padding-top: 2rem; }</style>
+      <style>body {   padding-top: 2rem; }
+      .form-control{max-width: 300px }
+      </style>
     </head>
 
     <body>
@@ -32,17 +34,65 @@
         </div>
       </li>
       {% endif %}
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
         {% if current_user.is_authenticated %}
         <span class="navbar-text mr-3"> Kirjautunut nimellä {{ current_user.name }}.</span> <a class="btn btn-secondary my-2 my-sm-0" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
         {% else %}
         <a class="btn btn-secondary my-2 my-sm-0" href="{{ url_for('auth_login') }}">Kirjaudu</a>
         {% endif %}
-    </form>
-  </div>
-</nav>
-    <main role="main" class="p-5">
+        </form>
+        </div>
+      </nav>
+
+    <div class="p-3">
+        <div class="row">
+            <div class="col-sm4">
+                {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            </div>
+            <div class="col-sm4">
+                {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            </div>
+            <div class="col-sm4">
+                {% with messages = get_flashed_messages(category_filter=["danger"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            </div>
+        </div>
+    </div>
+
+    <main role="main"class="p-5">
     <div class="row"> <div class="col-md-12">
       {% block body %}
       <p>

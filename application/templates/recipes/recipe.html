@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <h1>Recipe for:</h1>
+                <hr>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4>{{ recipe.name }}</h4>
+                        <hr>
+                        <ul>
+                        {% for ingredient in ingredients %}
+                        <tr>
+                            <li>
+                                <td>{{ ingredient.name }}</td>
+                        </tr>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

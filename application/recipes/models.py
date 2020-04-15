@@ -16,7 +16,7 @@ class Recipe(db.Model):
                            nullable=False)
 
     recipeIngredients = db.relationship('Ingredient', secondary=recipe_ingredients,
-                                        backref=db.backref('recipe_ingredient', lazy='dynamic'))
+                                        backref=db.backref('recipe_ingredient', lazy='joined'))
 
     def __init__(self, name):
         self.name = name

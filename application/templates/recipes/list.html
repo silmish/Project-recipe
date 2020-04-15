@@ -20,7 +20,7 @@
     <ul>
   {% for recipes in has_ingredients %}
     <li>
-        {{recipes.id}} {{recipes.name}}
+        <a href="recipes/{{ recipes.id }}">{{recipes.name}}</a>
     </li>
     {% endfor %}
     </ul>

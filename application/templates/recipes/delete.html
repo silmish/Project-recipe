@@ -2,26 +2,13 @@
 
   {% block body %}
   <form method="POST" action="{{ url_for('recipes_delete') }}">
-    <table>
-      <tr>
-	<td>
-	  {{ form.name.label }}
-	</td>
-	<td>
-	  {{ form.name }}
-	</td>
-	<td>
-	  <ul>
-	    {% for error in form.name.errors %}
-	    <li>{{ error }}</li>
-	    {% endfor %}
-	  </ul>
-	</td>
-      </tr>
-      <tr>
-	<td colspan="3">
-	  <input type="submit" value="Delete recipe"/>
-	</td>
-      </tr>
+   <div class="form-group">
+        <label>{{ form.name.label }}</label>
+        {{ form.name(class_="form-control", placeholder="Enter name of recipe that you wish to delete")}}
+       <p><i> You can only delete recipes that you have added yourself!</i></p>
+   </div>
+
+    <button type="submit" class="btn btn-primary">Delete recipe</button>
+
   </form>
   {% endblock %}

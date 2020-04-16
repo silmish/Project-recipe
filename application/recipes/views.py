@@ -14,9 +14,6 @@ from application.recipes.deleteform import DeleteForm
 def recipes_index():
     recipeList = Recipe.find_recipes_with_ingredients()
 
-    for recipe in recipeList:
-        print(recipe)
-
     return render_template("recipes/list.html", has_ingredients=recipeList)
 
 
@@ -27,9 +24,6 @@ def recipes_by_id(recipe_id):
     ingredients = Ingredient.query.join(recipe_ingredients).join(Recipe) \
         .filter((recipe_ingredients.c.recipe_id == recipe.id) &
                 (recipe_ingredients.c.ingredients_id == Ingredient.id)).all()
-
-    for ingredient in ingredients:
-        print(ingredient.name)
 
     return render_template("recipes/recipe.html", recipe=recipe, ingredients=ingredients)
 

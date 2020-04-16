@@ -1,0 +1,14 @@
+body
+{
+    padding-top: 2rem;
+}
+
+.form-group
+{
+    max-width: 400px;
+}
+.list-group-item
+{
+    padding: 5px 3px;
+    max-width: 400px;
+}

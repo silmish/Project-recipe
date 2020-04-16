@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, TextAreaField
 
 
 class RecipeForm(FlaskForm):
     name = StringField("Recipe name")
-    ingredientString = StringField("Ingredients")
+    ingredientString = TextAreaField("Ingredients")
 
     class Meta:
         csrf = False

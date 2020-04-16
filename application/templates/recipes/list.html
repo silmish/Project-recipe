@@ -2,24 +2,21 @@
 
 {% block body %}
   <table>
-    <tr>
-      <th>Recipe</th>
-    </tr>
     {% for recipes in recipes %}
     <tr>
       <td>{{ recipes.name }}</td>
     </tr>
 
     {% endfor %}
-    </ul>
+    </ul class="list-group">
   {% if has_ingredients is defined %}
     <p>
     The following recipes has ingredients:
     </p>
 
-    <ul>
+    <ul class="list-group">
   {% for recipes in has_ingredients %}
-    <li>
+    <li class="list-group-item">
         <a href="recipes/{{ recipes.id }}">{{recipes.name}}</a>
     </li>
     {% endfor %}

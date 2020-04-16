@@ -8,6 +8,7 @@
 Tässä valmiiksi tehdyt tunnarit vaikka sovellukseen voi jo luoda omat
 
 Username:testeri
+
 password:testeri123
 
 
@@ -21,5 +22,5 @@ password:testeri123
 
 [Käyttöohje](https://github.com/silmish/Project-recipe/blob/master/documentation/kayttoohje.md)
 
-[Asenusohje](https://github.com/silmish/Project-recipe/blob/master/documentation/asennusohje.md)
+[Asennusohje](https://github.com/silmish/Project-recipe/blob/master/documentation/asennusohje.md)
 

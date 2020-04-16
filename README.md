@@ -1,4 +1,4 @@
-# Recipe database
+ Recipe database
 
 ## Heroku
 
@@ -8,7 +8,7 @@
 Tässä valmiiksi tehdyt tunnarit vaikka sovellukseen voi jo luoda omat
 
 Username:testeri
-password:testeri
+password:testeri123
 
 
 ## Dokumentaatio
@@ -18,4 +18,8 @@ password:testeri
 [Tietokantakaavio](https://github.com/silmish/Project-recipe/blob/master/documentation/Tietokantakaavio.jpg)
 
 [Käyttötapaukset](https://github.com/silmish/Project-recipe/blob/master/documentation/kayttotapaukset.md)
+
+[Käyttöohje](https://github.com/silmish/Project-recipe/blob/master/documentation/kayttoohje.md)
+
+[Asenusohje](https://github.com/silmish/Project-recipe/blob/master/documentation/asennusohje.md)
 

@@ -10,7 +10,7 @@ Jotta sovelluksen voi saada lokaalisti toimimaan tulee ensin varmistaa että pyt
 sudo apt-get install python3
 ```
 
-Tai osoitteesta: www.python.ord/downloads/.
+Tai osoitteesta: www.python.org/downloads/.
 
 Seuraavaksi tarvitsee apukirjastojen lataukseen soveltuvan ohjelman, Python-pip.
 
@@ -24,11 +24,15 @@ Jotta sovellusta pystyisi muokkaamaan ja käyttämään lokaalisti tulee Python 
 
 Virtuaaliympäristön voi luoda haluttuun kansioon, esim:
 
+```
 mkdir demo
+```
 ```
 cd demo
 ```
+```
 python3 -m venv venv
+```
 
 Näin virtuaaliympäristö on luotu kansioon demo. Jotta virtuaaliympäristön vaa aktivoitua tulee kansion sisällä antaa seuraava komento:
 

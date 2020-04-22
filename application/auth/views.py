@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm
+from application.favorites.models import favorites
+from application.recipes.models import Recipe
 
 
 @app.route("/auth/login", methods=["GET", "POST"])
@@ -12,7 +14,6 @@ def auth_login():
         return render_template("auth/loginform.html", form=LoginForm())
 
     form = LoginForm(request.form)
-    # mahdolliset validoinnit
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
@@ -58,3 +59,15 @@ def auth_create():
         db.session().commit()
 
     return redirect(url_for("auth_create"))
+
+
+@app.route("/auth/profile/", methods=["GET"])
+@login_required
+def user_profile():
+    profile = User.query.filter_by(id=current_user.id).first()
+
+    favorites_list = Recipe.query.join(favorites).join(User) \
+        .filter((favorites.c.recipe_id == Recipe.id) &
+                (favorites.c.account_id == User.id)).all()
+
+    return render_template("auth/profile.html", profile=profile, favorites=favorites_list)

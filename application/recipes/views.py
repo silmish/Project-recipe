@@ -1,7 +1,8 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 from flask_login import login_required, current_user
 
 from application import app, db
+from application.favorites.models import favorites
 from application.recipe_ingredients.models import recipe_ingredients
 from application.recipes.models import Recipe
 from application.ingredients.models import Ingredient
@@ -17,15 +18,45 @@ def recipes_index():
     return render_template("recipes/list.html", has_ingredients=recipeList)
 
 
-@app.route("/recipes/<recipe_id>", methods=["GET"])
+@app.route("/auth/profile/recipe/<recipe_id>")
+def recipes_favorites(recipe_id):
+    return redirect(url_for("recipes_by_id", recipe_id=recipe_id))
+
+
+@app.route("/recipes/<recipe_id>", methods=["GET", "POST"])
 @login_required
 def recipes_by_id(recipe_id):
     recipe = Recipe.query.filter_by(id=recipe_id).first()
+
+    session["add_item"] = recipe.id
+
     ingredients = Ingredient.query.join(recipe_ingredients).join(Recipe) \
         .filter((recipe_ingredients.c.recipe_id == recipe.id) &
                 (recipe_ingredients.c.ingredients_id == Ingredient.id)).all()
 
     return render_template("recipes/recipe.html", recipe=recipe, ingredients=ingredients)
+
+
+@app.route("/background_process_test/", methods=["POST", "GET"])
+@login_required
+def background_process_test():
+    recipe_id = session.get("add_item", None)
+    add_recipe = Recipe.query.filter_by(id=recipe_id).first()
+
+    favorite = Recipe.query.join(favorites).filter(favorites.c.recipe_id == recipe_id).one_or_none()
+
+    if favorite is not None:
+        flash("This recipe is already in your favorites", "warning")
+    else:
+        add_recipe.add_favorites.append(current_user)
+        flash("Recipe has been added to favorites", "success")
+
+    try:
+        db.session().commit()
+    except Exception as e:
+        print(str(e))
+
+    return redirect(url_for("recipes_by_id", recipe_id=recipe_id))
 
 
 @app.route("/recipes/new/")

@@ -1,6 +1,7 @@
 from application import db
 
 from application.recipe_ingredients.models import recipe_ingredients
+from application.favorites.models import favorites
 
 
 class Recipe(db.Model):
@@ -17,6 +18,9 @@ class Recipe(db.Model):
 
     recipeIngredients = db.relationship('Ingredient', secondary=recipe_ingredients,
                                         backref=db.backref('recipe_ingredient', lazy='joined'))
+
+    add_favorites = db.relationship('User', secondary=favorites,
+                                    backref=db.backref('favorites', lazy='joined'))
 
     def __init__(self, name):
         self.name = name
@@ -35,4 +39,3 @@ class Recipe(db.Model):
             response.append({"id": row[0], "name": row[1]})
 
         return response
-

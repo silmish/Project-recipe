@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <h1>{{ profile.name }}</h1>
+                <hr>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4>{{ profile.username }}</h4>
+                        <hr>
+                        <h5>Favorites</h5>
+                        <ul class="list-group">
+                        {% for favorites in favorites %}
+                            <li class="list-group-item">
+                            <a href="recipe/{{ favorites.id }}">{{favorites.name}}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

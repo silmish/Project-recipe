@@ -1,13 +1,24 @@
 {% extends "layout.html" %}
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+    $(function() {
+      $('a#test').bind('click', function() {
+        $.getJSON('/background_process_test',
+            function(data) {
+        });
+        return false;
+      });
+    });
+</script>
+
 {% block body %}
+
     <div class="container">
         <div class="row">
             <div class="col">
-
-                <h1>Recipe for:</h1>
+                <h1>Recipe for: </h1>
                 <hr>
-
                 <div class="card">
                     <div class="card-body">
                         <h4>{{ recipe.name }}</h4>
@@ -23,9 +34,11 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
         </div>
+        <form action="/background_process_test/" method="post">
+        <a href=# id=test><button type="submit" class="btn btn-primary">Add to favorites</button></a>
+        </form>
     </div>
+
 {% endblock %}

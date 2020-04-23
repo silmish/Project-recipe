@@ -15,6 +15,8 @@ class User(db.Model):
 
     recipes = db.relationship("Recipe", backref='account', lazy=True)
 
+    ingredients = db.relationship("Ingredient", backref='account', lazy=True)
+
     def __init__(self, name, username, password):
         self.name = name
         self.username = username

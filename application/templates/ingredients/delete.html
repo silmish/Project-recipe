@@ -1,0 +1,14 @@
+ {% extends "layout.html" %}
+
+  {% block body %}
+  <form method="POST" action="{{ url_for('ingredients_delete') }}">
+   <div class="form-group">
+        <label>{{ form.name.label }}</label>
+        {{ form.name(class_="form-control", placeholder="Enter name of ingredient that you wish to delete")}}
+       <p><i> You can only delete ingredients that you have added yourself!</i></p>
+   </div>
+
+    <button type="submit" class="btn btn-primary">Delete ingredient</button>
+
+  </form>
+  {% endblock %}

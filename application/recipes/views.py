@@ -97,6 +97,7 @@ def recipes_create():
                     flash("Ingredient name has to be longer than 1 character", "warning")
                 else:
                     x = Ingredient(ingredient)
+                    x.account_id = current_user.id
                     db.session().add(x)
 
             t.recipeIngredients.append(x)

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+ {% block body %}
+ <form method="POST" action="{{ url_for('ingredients_update') }}">
+    <div class="form-group">
+    <label>{{ form.name.label }}</label>
+     {{ form.name(class_="form-control", placeholder="Enter current name of ingredient")}}
+  </div>
+  <div class="form-group">
+    <label>{{ form.new.label }}</label>
+      {{ form.new(class_="form-control", placeholder="Enter new name for the ingredient")}}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update ingredient name</button>
+
+ </form>
+ {% endblock %}

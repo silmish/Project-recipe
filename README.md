@@ -24,3 +24,4 @@ password:testeri123
 
 [Asennusohje](https://github.com/silmish/Project-recipe/blob/master/documentation/asennusohje.md)
 
+[Puutteet ja rajoitukset](https://github.com/silmish/Project-recipe/blob/master/documentation/puutteet.md)

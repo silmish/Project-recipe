@@ -28,12 +28,19 @@ def ingredients_create():
     if not form.validate():
         return render_template("ingredients/new.html", form=form)
 
-    t = Ingredient(form.name.data)
+    x = db.session.query(Ingredient).filter(Ingredient.name == form.name.data).one_or_none()
 
-    db.session().add(t)
+    if x is not None:
+        flash("Ingredient you are trying add already exist", "warning")
+    else:
+        flash("Ingredient has been added", "success")
+        t = Ingredient(form.name.data)
+        t.account_id = current_user.id
+        db.session().add(t)
+
     db.session().commit()
 
-    return redirect(url_for("ingredients_index"))
+    return redirect(url_for("ingredients_create"))
 
 
 @app.route("/ingredients/delete/", methods=["POST", "GET"])

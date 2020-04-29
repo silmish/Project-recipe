@@ -68,6 +68,6 @@ def user_profile():
 
     favorites_list = Recipe.query.join(favorites).join(User) \
         .filter((favorites.c.recipe_id == Recipe.id) &
-                (favorites.c.account_id == User.id)).all()
+                (favorites.c.account_id == current_user.id)).all()
 
     return render_template("auth/profile.html", profile=profile, favorites=favorites_list)

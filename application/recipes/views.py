@@ -14,13 +14,22 @@ from application.recipes.deleteform import DeleteForm
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
     recipeList = Recipe.find_recipes_with_ingredients()
+    recipeCount = Recipe.get_recipe_count()
 
-    return render_template("recipes/list.html", has_ingredients=recipeList)
+    return render_template("recipes/list.html", has_ingredients=recipeList, recipeCount=recipeCount)
 
 
 @app.route("/auth/profile/recipe/<recipe_id>")
 def recipes_favorites(recipe_id):
     return redirect(url_for("recipes_by_id", recipe_id=recipe_id))
+
+
+@app.route("/statistics", methods=["GET"])
+def recipes_ingredient_count():
+    ingredientCount = Recipe.count_ingredient_recipe()
+    ingredients = Ingredient.count_ingredient_usage()
+
+    return render_template("stats.html", ingredientCount=ingredientCount, ingredients=ingredients)
 
 
 @app.route("/recipes/<recipe_id>", methods=["GET", "POST"])

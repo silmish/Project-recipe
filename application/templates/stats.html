@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div>
+    <p>
+    Top 3 most used ingredients in a recipe:
+    </p>
+    {% if ingredients is defined %}
+    <ul class="list-group">
+        {% for ingredient in ingredients %}
+    <li class="list-group-item">
+        {{ ingredient.id }} {{ ingredient.name }}
+    </li>
+        {% endfor %}
+    </ul>
+    </div>
+    <hr>
+    <div>
+    <p>
+    Top 3 most ingredients in a recipe:
+    </p>
+    {% for amount in ingredientCount %}
+    <li class="list-group-item">
+        {{ amount.id }} {{ amount.name }}
+    </li>
+    {% endfor %}
+    </div>
+    <hr>
+    {% endif %}
+
+{% endblock %}

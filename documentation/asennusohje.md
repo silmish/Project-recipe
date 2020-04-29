@@ -64,5 +64,15 @@ sqlite3
 apt-get install sqlite3
 ```
 
+Flask login
 
+```
+pip install flask-login
+```
+
+Flask WTF
+
+```
+pip install flask-wtf
+```
 

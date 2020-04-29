@@ -24,6 +24,9 @@
         <li class="nav-item">
         <a class="nav-link" href="{{ url_for('user_profile') }}">Profile <span class="sr-only">(current)</span></a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('ingredient_statistics') }}">Statistics <span class="sr-only">(current)</span></a>
+        </li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -36,7 +39,8 @@
             <a class="dropdown-item" href="{{ url_for('ingredients_delete') }}">Delete ingredient</a>
             <a class="dropdown-item" href="{{ url_for('ingredients_update') }}">Update ingredient name</a>
         </div>
-      </li>
+        </li>
+
       {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0">

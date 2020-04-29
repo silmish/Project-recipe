@@ -39,3 +39,34 @@ class Recipe(db.Model):
             response.append({"id": row[0], "name": row[1]})
 
         return response
+
+    @staticmethod
+    def get_recipe_count():
+        stmt = """SELECT COUNT(DISTINCT recipe_id) FROM recipe_ingredients"""
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append(row[0])
+
+        return response
+
+    @staticmethod
+    def count_ingredient_recipe():
+        stmt = """SELECT COUNT(recipe_ingredients.ingredients_id), recipe.name FROM recipe_ingredients
+                            LEFT JOIN recipe ON recipe.id = recipe_ingredients.recipe_id
+                            WHERE (recipe_id IS NOT null)
+                            GROUP BY recipe.name
+                            HAVING COUNT(recipe_ingredients.ingredients_id) > 0
+                            ORDER BY COUNT(recipe_ingredients.ingredients_id) DESC
+                            LIMIT 3"""
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            print(row[0])
+            response.append({"id": row[0], "name": row[1]})
+
+        return response
+

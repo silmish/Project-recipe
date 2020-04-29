@@ -1,18 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    {% for recipes in recipes %}
+    <p>
+    The database has currently:
+    </p>
+    {% for amount in recipeCount %}
+    <hr>
     <tr>
-      <td>{{ recipes.name }}</td>
+      <td>{{ amount }}</td>
     </tr>
+    <hr>
+     <p>
+    Recipes with ingredients
+    </p>
+
 
     {% endfor %}
     </ul class="list-group">
   {% if has_ingredients is defined %}
-    <p>
-    The following recipes has ingredients:
-    </p>
 
     <ul class="list-group">
   {% for recipes in has_ingredients %}
@@ -23,6 +28,5 @@
     </ul>
 
     {% endif %}
-  </table>
 
 {% endblock %}

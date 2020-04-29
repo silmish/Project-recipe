@@ -87,6 +87,3 @@ def ingredients_update():
         db.session().commit()
 
     return redirect(url_for("ingredients_update"))
-
-
-

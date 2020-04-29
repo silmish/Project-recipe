@@ -25,7 +25,7 @@ def recipes_favorites(recipe_id):
 
 
 @app.route("/statistics", methods=["GET"])
-def recipes_ingredient_count():
+def recipes_ingredient_statistics():
     ingredientCount = Recipe.count_ingredient_recipe()
     ingredients = Ingredient.count_ingredient_usage()
 

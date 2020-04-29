@@ -1,10 +1,13 @@
- Recipe database
+# Recipe database
+
+Reseptitietokanta jossa voi lisätä reseptejä, selailla niitä ja myös lisätä suosikit omaan profiiliinsa.
 
 ## Heroku
 
 [Recipe DB](https://tsoha-recipe-db-pate.herokuapp.com/recipes)
 
 ## Testitunnarit
+
 Tässä valmiiksi tehdyt tunnarit vaikka sovellukseen voi jo luoda omat
 
 Username:testeri

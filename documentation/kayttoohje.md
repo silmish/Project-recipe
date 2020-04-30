@@ -17,6 +17,10 @@ Esimerkiksi: Reseptin nimi, kaalikeitto. Ainekset: kaali, pippuri, suola.
 
 Toistaiseksi tietokannassa olevat reseptit löytyy pelkästään listauksen avulla. Kohdasta Actions - List recipes, pääsee tutkimaan olemassa olevia reseptejä nimen perusteella. Reseptejä voi klikata ja näin pääset tutkimaan reseptin aineksia tarkemmin.
 
+### Reseptejä voi lisätä omaan profiiliin suosikkeihin
+
+Kun aukaisee respetin oman sivun, voi kyseisen reseptin lisät omiin suosikkeihinsa painamalla nappia "Add to favorites". Tämän jälkeen reseptin linkki löytyy omalta profiilisivulta myös.
+
 ### Reseptien päivittäminen ja poisto
 
 Reseptejä mitä on itse tallentanut tietokantaan voi käydä poistamassa tai päivittämässä nimeä.
@@ -24,3 +28,5 @@ Reseptejä mitä on itse tallentanut tietokantaan voi käydä poistamassa tai p�
 Nämä tapahtuu kohdasta Actions - Update recipe tai Delete recipe.
 
 Päivittäminen tapahtuu antamalla reseptin tämän hetkinen nimi ja uusi nimi. Poistaminen antamalla reseptin tämän hetkinen nimi.
+
+

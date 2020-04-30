@@ -46,9 +46,9 @@ def recipes_by_id(recipe_id):
     return render_template("recipes/recipe.html", recipe=recipe, ingredients=ingredients)
 
 
-@app.route("/background_process_test/", methods=["POST", "GET"])
+@app.route("/add_to_favorites/", methods=["POST", "GET"])
 @login_required
-def background_process_test():
+def add_to_favorites():
     recipe_id = session.get("add_item", None)
     add_recipe = Recipe.query.filter_by(id=recipe_id).first()
 

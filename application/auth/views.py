@@ -42,7 +42,7 @@ def auth_create():
     if not form.validate():
         return render_template("auth/new.html", form=form)
 
-    u = db.session.query(User).filter(User.name == form.username.data).one_or_none()
+    u = db.session.query(User).filter(User.username == form.username.data).one_or_none()
 
     if u is not None:
         flash("This username already exists, please try a different one", "danger")

@@ -4,7 +4,7 @@
 <script type=text/javascript>
     $(function() {
       $('a#test').bind('click', function() {
-        $.getJSON('/background_process_test',
+        $.getJSON('/add_to_favorites',
             function(data) {
         });
         return false;
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <form action="/background_process_test/" method="post">
+        <form action="/add_to_favorites/" method="post">
         <a href=# id=test><button type="submit" class="btn btn-primary">Add to favorites</button></a>
         </form>
     </div>

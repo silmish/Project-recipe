@@ -19,7 +19,7 @@ password:testeri123
 
 [Kuvaus](https://github.com/silmish/Project-recipe/blob/master/documentation/kuvaus.md)
 
-[Tietokantakaavio](https://github.com/silmish/Project-recipe/blob/master/documentation/Tietokantakaavio.jpg)
+[Tietokantakaavio](https://github.com/silmish/Project-recipe/blob/master/documentation/tietokantakaavio.md)
 
 [Käyttötapaukset](https://github.com/silmish/Project-recipe/blob/master/documentation/kayttotapaukset.md)
 
